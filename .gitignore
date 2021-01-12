@@ -11,21 +11,23 @@
 # ignore all .pdf files in the doc/ directory
 # doc/**/*.pdf
 
-data/
-logs/
 gui_basic/
 gui_project/
-images/
 rpa_basic/
 rpa_project/
 webscraping_basic/
 webscraping_project/
+data/
+logs/
+images/
+cache/
+pytest/
 __pycache__/
 .pytest_cache/
-**/images/
 **/data/
-**/cache/
-**/.pytest_cache/
 **/logs/
-
-
+**/images/
+**/cache/
+**/pytest/
+**/__pycache__/
+**/.pytest_cache/
