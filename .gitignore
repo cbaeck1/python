@@ -12,6 +12,7 @@
 # doc/**/*.pdf
 
 data/
+logs/
 gui_basic/
 gui_project/
 images/
@@ -19,4 +20,12 @@ rpa_basic/
 rpa_project/
 webscraping_basic/
 webscraping_project/
+__pycache__/
+.pytest_cache/
+**/images/
+**/data/
+**/cache/
+**/.pytest_cache/
+**/logs/
+
 
