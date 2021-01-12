@@ -1,0 +1,43 @@
+ G 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: 4033-1EC0
+
+ G:\work\workspace\python 디렉터리
+
+2020-08-09  오전 03:43    <DIR>          .
+2020-08-09  오전 03:43    <DIR>          ..
+2020-08-08  오전 10:02                 0 automatefileParseRename.py
+2020-08-08  오후 04:43                 0 context.py
+2020-08-08  오후 05:49               145 decorators.py
+2020-08-08  오전 10:04                 0 goups.py
+2020-08-08  오후 02:27    <DIR>          insight
+2020-08-08  오전 10:48               499 iter.py
+2020-08-08  오전 10:03                 0 lambda.py
+2020-08-08  오후 01:12             1,972 mistakes5.py
+2020-08-09  오전 03:08               164 module1.py
+2020-08-09  오전 03:08                54 module1_wrong.py
+2020-08-09  오전 03:09               148 module2.py
+2020-08-09  오전 03:09               215 module20.py
+2020-08-08  오후 03:47               759 multiprocess0.py
+2020-08-08  오후 04:42               484 multiprocess1.py
+2020-08-08  오후 04:51               734 multiprocess2.py
+2020-08-08  오후 05:42             2,000 multiprocess3.py
+2020-08-08  오후 05:11             2,207 multiprocess4.py
+2020-08-08  오후 05:23               862 multiprocess_locks.py
+2020-08-08  오후 05:46             1,762 multiprocess_locks1.py
+2020-08-09  오전 03:53                 0 output.txt
+2020-08-08  오후 02:27    <DIR>          pandas
+2020-08-08  오전 09:59               100 password.py
+2020-08-08  오전 10:03                 0 senmail.py
+2020-08-09  오전 03:53             1,127 subprocess0.py
+2020-08-08  오전 09:27                51 test.txt
+2020-08-08  오후 02:47               286 threading0.py
+2020-08-08  오후 04:48               390 threading1.py
+2020-08-08  오후 04:48               409 threading2.py
+2020-08-08  오후 04:48               446 threading3.py
+2020-08-08  오후 04:49             1,838 threading4.py
+2020-08-08  오전 09:59             2,249 tip10.py
+2020-08-08  오후 05:01                 0 tryexecption.py
+2020-08-08  오전 10:03                 0 userTest.py
+2020-08-08  오후 05:30    <DIR>          __pycache__
+              31개 파일              18,901 바이트
+               5개 디렉터리  168,527,167,488 바이트 남음
