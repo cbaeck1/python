@@ -76,21 +76,21 @@ print(a)  # 1
 # 1) return 사용하기
 a = 1
 
-def vartest(a):
+def vartest1(a):
     a = a + 1
     return a
 
-a = vartest(a)
+a = vartest1(a)
 print(a)
 
 # 2) global 명령어 사용하기
 a = 1
 
-def vartest():
+def vartest2():
     global a
     a = a+1
 
-vartest()
+vartest2()
 print(a)
 
 # lambda

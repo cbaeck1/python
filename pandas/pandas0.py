@@ -207,10 +207,6 @@ DataFrame, Series에서 조건에 맞는 값이 들어있는 행 indexing 하기
 DataFrame, Series에서 순위(rank)를 구하는 rank() 함수
 DataFrame에서 천 단위 숫자의 자리 구분 기호 콤마(',')를 없애는 방법
 
-출처: https://rfriend.tistory.com/463?category=675917 [R, Python 분석과 프로그래밍의 친구 (by R Friend)]
-출처: https://rfriend.tistory.com/461?category=675917 [R, Python 분석과 프로그래밍의 친구 (by R Friend)]
-출처: https://rfriend.tistory.com/460?category=675917 [R, Python 분석과 프로그래밍의 친구 (by R Friend)]
-출처: https://rfriend.tistory.com/456?category=675917 [R, Python 분석과 프로그래밍의 친구 (by R Friend)]
 
 
 
