@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
  
 DOWNLOAD_HOUSING = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
-HOUSING_PATH = os.path.join("datasets", "housing")
+HOUSING_PATH = os.path.join("handson-ml2/datasets", "housing")
 HOUSING_URL = DOWNLOAD_HOUSING + "datasets/housing/housing.tgz"
 def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
     if not os.path.isdir(housing_path):
@@ -17,7 +17,7 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
     housing_tgz.close()
 
 DOWNLOAD_BLI = "https://raw.githubusercontent.com/rickiepark/handson-ml2/master/"
-OECD_BLI_PATH = os.path.join("datasets", "lifesat")
+OECD_BLI_PATH = os.path.join("handson-ml2/datasets", "lifesat")
 def fetch_bli_data(oecd_bli_path=OECD_BLI_PATH):
     if not os.path.isdir(oecd_bli_path):
         os.makedirs(oecd_bli_path, exist_ok=True)

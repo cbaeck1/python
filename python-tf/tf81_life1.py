@@ -34,7 +34,7 @@ from sklearn.model_selection import train_test_split
 # 이 정보를 사용해 환자의 심장병 발병 여부를 예측
 
 # 1.1 판다스로 데이터프레임 만들기
-dataframe = pd.read_csv('e:/data/trans서울중구.csv')
+dataframe = pd.read_csv('d:/data/trans서울중구.csv')
 dfColName = dataframe.columns
 print(dataframe.head(), dataframe.info(), dataframe.shape)
 

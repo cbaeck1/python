@@ -14,7 +14,7 @@ import graphviz
 # 20. life
 
 # 1.1 판다스로 데이터프레임 만들기
-dataframe = pd.read_csv('e:/data/trans서울중구.csv')
+dataframe = pd.read_csv('d:/data/trans서울중구.csv')
 print(dataframe.head(), dataframe.shape)
 
 # Categorical
