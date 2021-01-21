@@ -1,7 +1,7 @@
 import pandas as pd
 
-df = pd.read_csv('G:/work/workspace/ML/syntax/survey_results_public.csv', index_col='Respondent')
-schema_df = pd.read_csv('G:/work/workspace/ML/syntax/survey_results_schema.csv', index_col='Column')
+df = pd.read_csv('I:/work/workspace/python/data/survey_results_public.csv', index_col='Respondent')
+schema_df = pd.read_csv('I:/work/workspace/python/data/survey_results_schema.csv', index_col='Column')
 
 pd.set_option('display.max_columns', 85)
 pd.set_option('display.max_rows', 85)

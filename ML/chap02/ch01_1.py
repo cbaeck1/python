@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
+print(sys.path)
 import images.image
 
 from sklearn.datasets import load_iris
@@ -46,6 +48,7 @@ print("y_test 크기: {}".format(y_test.shape))
 # k-최근접 이웃 분류 알고리즘은 neighbors 모듈 아래 KNeighborsClassifier 클래스에 구현
 from sklearn.neighbors import KNeighborsClassifier
 clf = KNeighborsClassifier(n_neighbors=1)
+
 
 # knn 객체는 훈련 데이터로 모델을 만들고 새로운 데이터 포인트에 대해 예측하는 알고리즘을 캡슐화한 것입니다. 
 # 또한 알고리즘이 훈련 데이터로부터 추출한 정보를 담고 있습니다.

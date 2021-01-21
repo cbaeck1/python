@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 3. 위스콘신 유방암 Wisconsin Breast Cancer 데이터셋입니다(줄여서 cancer라고 하겠습니다). 
@@ -32,6 +33,45 @@ plt.title("breast_cancer Scatter Plot")
 images.image.save_fig("3.breast_cancer_Scatter")  
 plt.show()
 
+# Historam 그립니다. 
+# bins=5, ## 몇 개의 바구니로 구분
+# density=True, ## ytick을 퍼센트비율로 표현해줌 
+# cumulative=False, ## 누적으로 표현하고 싶을 때는 True
+# histtype='bar',  ## 타입. or step으로 하면 모양이 바뀜.  
+# orientation='vertical', ## or horizontal
+# rwidth=0.8, ## 1.0일 경우, 꽉 채움 작아질수록 간격이 생김
+# color='hotpink', ## bar 색깔
+for i, col in enumerate(cancer.feature_names):
+    #print(i, col)
+    plt.title("breast_cancer_Histogram")
+    plt.xlabel(cancer.feature_names[i])
+    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Histogram")  
+    plt.hist(cancer.data[:, i])
+    #plt.show()
+
+# 산점도를 그립니다. 1개의 특성과 1개의 타켓으로
+for i, col in enumerate(cancer.feature_names):
+    mglearn.discrete_scatter(cancer.data[:, i], cancer.target, cancer.target)
+    plt.title("breast_cancer_Scatter")
+    plt.xlabel(cancer.feature_names[i])
+    plt.ylabel("TARGET")
+    plt.legend(["클래스 0", "클래스 1"], loc=4)
+    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Scatter")  
+    #plt.show()
+
+# 산점도를 그립니다. 2개의 특성과 1개의 타켓(2개의 값)으로
+for i, col in enumerate(cancer.feature_names):
+    for j, col in enumerate(cancer.feature_names):
+        if i == j: 
+            continue
+        mglearn.discrete_scatter(cancer.data[:, i], cancer.data[:, j], cancer.target)
+        plt.title("breast_cancer_Scatter")
+        plt.xlabel(cancer.feature_names[i])
+        plt.ylabel(cancer.feature_names[j])
+        plt.legend(["클래스 0", "클래스 1"], loc=4)
+        images.image.save_fig("3."+str(i)+"." +str(j)+"." + cancer.feature_names[i] + " Scatter")  
+        plt.show()
+  
 # 훈련 세트, 테스트 세트
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
@@ -44,10 +84,10 @@ print("y_test 크기: {}".format(y_test.shape))
 # 산점도 비교 1:전체 2:X_train 3:X_test
 fig, axes = plt.subplots(1, 3, figsize=(15, 6))
 for X, y, title, ax in zip([cancer.data, X_train, X_test], [cancer.target, y_train, y_test], ['전체','X_train','X_test'], axes):
-  mglearn.discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
-  ax.set_title("{}".format(title))
-  ax.set_xlabel("mean radius")
-  ax.set_ylabel("mean texture")
+    mglearn.discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
+    ax.set_title("{}".format(title))
+    ax.set_xlabel("mean radius")
+    ax.set_ylabel("mean texture")
 
 axes[0].legend(loc=3)
 images.image.save_fig("3.breast_cancer_scatter_compare")  
