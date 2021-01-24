@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 2. 두 개의 특성을 가진 forge 데이터셋
@@ -60,7 +61,7 @@ for n_neighbors, ax in zip([1, 3, 9], axes):
     ax.set_xlabel("특성 0")
     ax.set_ylabel("특성 1")
 axes[0].legend(loc=3)
-images.image.save_fig("1.2.Forge_KNN_n_neighbors_1_3_9")  
+images.image.save_fig("1.2.Forge_KNN_n_neighbors_1_3_9", "ml")  
 plt.show()
 
 # n_neighbors 변화에 따른 훈련 정확도와 테스트 정확도
@@ -83,6 +84,6 @@ plt.plot(neighbors_settings, test_accuracy, label="테스트 정확도")
 plt.ylabel("정확도")
 plt.xlabel("n_neighbors")
 plt.legend()
-images.image.save_fig("1.2.Forge_KNN_n_neighbors_1_10")  
+images.image.save_fig("1.2.Forge_KNN_n_neighbors_1_11", "ml")  
 plt.show()
 

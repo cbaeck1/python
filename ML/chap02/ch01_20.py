@@ -53,6 +53,36 @@ prediction = clf.predict(X_test)
 print("테스트 세트 예측: {}".format(prediction))
 print("테스트 세트 정확도: {:.2f}".format(clf.score(X_test, y_test)))
 
+# [MinMaxScaler 를 사용하여 데이터 전처리 후 성능]
+from sklearn.preprocessing import MinMaxScaler
+minmax_scaler = MinMaxScaler()
+minmax_scaler.fit(X_train)
+X_train_scaled = minmax_scaler.transform(X_train)
+X_test_scaled = minmax_scaler.transform(X_test)
+#print("X_train_scaled 크기: {}".format(X_train_scaled.shape))
+#print(X_train_scaled)
+#print("X_test_scaled 크기: {}".format(X_test_scaled.shape))
+
+# 예측
+prediction = clf.predict(X_train_scaled)
+print("MinMaxScaler 테스트 세트 예측: {}".format(prediction))
+print("MinMaxScaler 테스트 세트 정확도: {:.2f}".format(clf.score(X_test_scaled, y_test)))
+
+# [StandardScaler 를 사용하여 데이터 전처리 후 성능]
+from sklearn.preprocessing import StandardScaler
+standard_scaler = StandardScaler()
+standard_scaler.fit(X_train)
+X_train_scaled_standard = standard_scaler.transform(X_train)
+X_test_scaled_standard = standard_scaler.transform(X_test)
+#print("X_train_scaled_standard 크기: {}".format(X_train_scaled_standard.shape))
+#print(X_train_scaled_standard)
+#print("X_test_scaled_standard 크기: {}".format(X_test_scaled_standard.shape))
+
+# 예측
+prediction = clf.predict(X_train_scaled_standard)
+print("StandardScaler 테스트 세트 예측: {}".format(prediction))
+print("StandardScaler 테스트 세트 정확도: {:.2f}".format(clf.score(X_test_scaled_standard, y_test)))
+
 # n_neighbors 값이 각기 다른 최근접 이웃 모델이 만든 결정 경계
 # 이웃의 수를 늘릴수록 결정 경계는 더 부드러워집니다
 # 2개의 특성으로
@@ -69,7 +99,7 @@ for n_neighbors, ax in zip([1, 3, 9], axes):
     ax.set_ylabel("특성 자본_금액")
 axes[0].legend(loc=3)
 
-images.image.save_fig("1.20.life_KNN_n_neighbors_1_3_9")  
+images.image.save_fig("1.20.life_KNN_n_neighbors_1_3_9", "ml")  
 plt.show()
 
 
@@ -77,7 +107,7 @@ plt.show()
 training_accuracy = []
 test_accuracy = []
 # 1에서 10까지 n_neighbors를 적용
-neighbors_settings = range(1, 101)
+neighbors_settings = range(1, 21)
 
 for n_neighbors in neighbors_settings:
     # 모델 생성
@@ -93,11 +123,51 @@ plt.plot(neighbors_settings, test_accuracy, label="테스트 정확도")
 plt.ylabel("정확도")
 plt.xlabel("n_neighbors")
 plt.legend()
-images.image.save_fig("1.20.life_KNN_n_neighbors_1_10")  
+images.image.save_fig("1.20.life_KNN_n_neighbors_1_20", "ml")  
 plt.show()
 
+# MinMaxScaler n_neighbors 변화에 따른 훈련 정확도와 테스트 정확도 X_train_scaled, X_test_scaled
+training_accuracy = []
+test_accuracy = []
+# 1에서 10까지 n_neighbors를 적용
+neighbors_settings = range(1, 21)
 
+for n_neighbors in neighbors_settings:
+    # 모델 생성
+    clf = KNeighborsClassifier(n_neighbors=n_neighbors)
+    clf.fit(X_train, y_train)
+    # 훈련 세트 정확도 저장
+    training_accuracy.append(clf.score(X_train_scaled, y_train))
+    # 일반화 정확도 저장
+    test_accuracy.append(clf.score(X_test_scaled, y_test))
 
+plt.plot(neighbors_settings, training_accuracy, label="훈련 정확도")
+plt.plot(neighbors_settings, test_accuracy, label="테스트 정확도")
+plt.ylabel("정확도")
+plt.xlabel("n_neighbors")
+plt.legend()
+images.image.save_fig("1.20.MinMaxScaler_life_KNN_n_neighbors_1_20", "ml")  
+plt.show()
 
+# StandardScaler n_neighbors 변화에 따른 훈련 정확도와 테스트 정확도 X_train_scaled_standard, X_test_scaled_standard
+training_accuracy = []
+test_accuracy = []
+# 1에서 10까지 n_neighbors를 적용
+neighbors_settings = range(1, 21)
 
+for n_neighbors in neighbors_settings:
+    # 모델 생성
+    clf = KNeighborsClassifier(n_neighbors=n_neighbors)
+    clf.fit(X_train, y_train)
+    # 훈련 세트 정확도 저장
+    training_accuracy.append(clf.score(X_train_scaled_standard, y_train))
+    # 일반화 정확도 저장
+    test_accuracy.append(clf.score(X_test_scaled_standard, y_test))
 
+plt.plot(neighbors_settings, training_accuracy, label="훈련 정확도")
+plt.plot(neighbors_settings, test_accuracy, label="테스트 정확도")
+plt.ylabel("정확도")
+plt.xlabel("n_neighbors")
+plt.legend()
+images.image.save_fig("1.20.StandardScaler_life_KNN_n_neighbors_1_20", "ml")  
+plt.show()

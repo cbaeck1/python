@@ -56,11 +56,12 @@ plt.show()
 
 # 그림을 저장할 위치
 PROJECT_ROOT_DIR = "."
-CHAPTER_ID = "ml"
-IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)
-os.makedirs(IMAGES_PATH, exist_ok=True)
+#CHAPTER_ID = "ml"
 
-def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=300):
+
+def save_fig(fig_id, chapter_id="", tight_layout=True, fig_extension="png", resolution=600):
+    IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", chapter_id)
+    os.makedirs(IMAGES_PATH, exist_ok=True)
     path = os.path.join(IMAGES_PATH, fig_id + "." + fig_extension)
     print("그림 저장:", fig_id)
     if tight_layout:

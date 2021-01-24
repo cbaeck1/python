@@ -49,15 +49,14 @@ print("y_test 크기: {}".format(y_test.shape))
 from sklearn.neighbors import KNeighborsClassifier
 clf = KNeighborsClassifier(n_neighbors=1)
 
-
 # knn 객체는 훈련 데이터로 모델을 만들고 새로운 데이터 포인트에 대해 예측하는 알고리즘을 캡슐화한 것입니다. 
 # 또한 알고리즘이 훈련 데이터로부터 추출한 정보를 담고 있습니다.
-# KNeighborsClassifier의 경우는 훈련 데이터 자체를 저장하고 있습니다
+# KNeighborsClassifier 의 경우는 훈련 데이터 자체를 저장하고 있습니다
 
 # 훈련 데이터인 NumPy 배열 X_train 과 훈련 데이터의 레이블을 담고 있는 NumPy 배열 y_train 을 매개변수
 clf.fit(X_train, y_train)
 
-# 예측하기
+# 예측하기 ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
 X_new = np.array([[5, 2.9, 1, 0.2]])
 
 prediction = clf.predict(X_new)
@@ -73,7 +72,7 @@ print("테스트 세트의 정확도: {:.2f}".format(clf.score(X_test, y_test)))
 # n_neighbors 값이 각기 다른 최근접 이웃 모델이 만든 결정 경계
 # 이웃의 수를 늘릴수록 결정 경계는 더 부드러워집니다
 # 2개의 특성으로
-fig, axes = plt.subplots(1, 3, figsize=(10, 3))
+fig, axes = plt.subplots(1, 3, figsize=(20, 6))
 for n_neighbors, ax in zip([1, 3, 9], axes):
     # fit 메서드는 self 객체를 반환 객체 생성과 fit 메서드를 한 줄에 
     # plot_2d_separator 에서 그릴 X_train 갯수만큼만 fit 
@@ -84,14 +83,14 @@ for n_neighbors, ax in zip([1, 3, 9], axes):
     ax.set_xlabel("sepal length")
     ax.set_ylabel("sepal width")
 axes[0].legend(loc=3)
-images.image.save_fig("1.1.Iris_KNN_n_neighbors_1_3_9")  
+images.image.save_fig("1.1.Iris_KNN_n_neighbors_1_3_9", "ml")  
 plt.show()
 
 # n_neighbors 변화에 따른 훈련 정확도와 테스트 정확도
 training_accuracy = []
 test_accuracy = []
 # 1에서 10까지 n_neighbors를 적용
-neighbors_settings = range(1, 11)
+neighbors_settings = range(1, 21)
 
 for n_neighbors in neighbors_settings:
     # 모델 생성
@@ -107,5 +106,5 @@ plt.plot(neighbors_settings, test_accuracy, label="테스트 정확도")
 plt.ylabel("정확도")
 plt.xlabel("n_neighbors")
 plt.legend()
-images.image.save_fig("1.1.Iris_KNN_n_neighbors_1_10")  
+images.image.save_fig("1.1.Iris_KNN_n_neighbors_1_10", "ml")  
 plt.show()

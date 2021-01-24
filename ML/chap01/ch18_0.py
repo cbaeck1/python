@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 18. 숫자 데이터셋의 샘플 이미지 digits 
@@ -35,7 +36,7 @@ fig, axes = plt.subplots(2, 5, figsize=(10, 5), subplot_kw={'xticks':(), 'yticks
 for ax, image_shape in zip(axes.ravel(), digits.images):
     ax.imshow(image_shape)
 plt.title("digits image")
-images.image.save_fig("18. digits_image")
+images.image.save_fig("18. digits_image", "ml")
 plt.show()
 
 

@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 2. 두 개의 특성을 가진 forge 데이터셋은 인위적으로 만든 이진 분류 데이터셋
@@ -22,7 +23,7 @@ plt.legend(["클래스 0", "클래스 1"], loc=4)
 plt.xlabel("첫 번째 특성")
 plt.ylabel("두 번째 특성")
 plt.title("Forge Scatter Plot")
-images.image.save_fig("2.Forge_Scatter")  
+images.image.save_fig("2.Forge_Scatter", "ml")   
 plt.show()
 
 # 훈련 세트, 테스트 세트
@@ -39,7 +40,7 @@ plt.legend(["클래스 0", "클래스 1"], loc=4)
 plt.xlabel("첫 번째 특성")
 plt.ylabel("두 번째 특성")
 plt.title("Forge Scatter Plot")
-images.image.save_fig("2.Forge_Scatter_by_X_train")  
+images.image.save_fig("2.Forge_Scatter_by_X_train", "ml")    
 plt.show()
 
 # 산점도 비교 1:전체 2:X_train 3:X_test
@@ -51,7 +52,7 @@ for X, y, title, ax in zip([X, X_train, X_test], [y, y_train, y_test], ['전체'
   ax.set_ylabel("특성 1")
 
 axes[0].legend(loc=3)
-images.image.save_fig("2.Forge_scatter_compare")  
+images.image.save_fig("2.Forge_scatter_compare", "ml")  
 plt.show()
 
 

@@ -30,7 +30,7 @@ plt.legend(["클래스 0", "클래스 1"], loc=4)
 plt.xlabel("mean radius")
 plt.ylabel("mean texture")
 plt.title("breast_cancer Scatter Plot")
-images.image.save_fig("3.breast_cancer_Scatter")  
+images.image.save_fig("3.breast_cancer_Scatter", "ml")   
 plt.show()
 
 # Historam 그립니다. 
@@ -45,7 +45,7 @@ for i, col in enumerate(cancer.feature_names):
     #print(i, col)
     plt.title("breast_cancer_Histogram")
     plt.xlabel(cancer.feature_names[i])
-    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Histogram")  
+    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Histogram", "ml")   
     plt.hist(cancer.data[:, i])
     #plt.show()
 
@@ -56,7 +56,7 @@ for i, col in enumerate(cancer.feature_names):
     plt.xlabel(cancer.feature_names[i])
     plt.ylabel("TARGET")
     plt.legend(["클래스 0", "클래스 1"], loc=4)
-    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Scatter")  
+    images.image.save_fig("3."+str(i)+"." + cancer.feature_names[i] + " Scatter", "ml")    
     #plt.show()
 
 # 산점도를 그립니다. 2개의 특성과 1개의 타켓(2개의 값)으로
@@ -69,7 +69,7 @@ for i, col in enumerate(cancer.feature_names):
         plt.xlabel(cancer.feature_names[i])
         plt.ylabel(cancer.feature_names[j])
         plt.legend(["클래스 0", "클래스 1"], loc=4)
-        images.image.save_fig("3."+str(i)+"." +str(j)+"." + cancer.feature_names[i] + " Scatter")  
+        images.image.save_fig("3."+str(i)+"." +str(j)+"." + cancer.feature_names[i] + " Scatter", "ml")  
         plt.show()
   
 # 훈련 세트, 테스트 세트
@@ -90,7 +90,7 @@ for X, y, title, ax in zip([cancer.data, X_train, X_test], [cancer.target, y_tra
     ax.set_ylabel("mean texture")
 
 axes[0].legend(loc=3)
-images.image.save_fig("3.breast_cancer_scatter_compare")  
+images.image.save_fig("3.breast_cancer_scatter_compare", "ml")  
 plt.show()
 
 # X_train 데이터를 사용해서 데이터프레임을 만듭니다.
@@ -109,7 +109,7 @@ if nCase <= 10:
     pd.plotting.scatter_matrix(breast_cancer_df, c=y_train, figsize=(15, 15), marker='o',
     hist_kwds={'bins': 20}, s=20, alpha=.8, cmap=mglearn.cm3)
     plt.title("breast_cancer Scatter Plot")
-    images.image.save_fig("3.breast_cancer_scatter_X_train")  
+    images.image.save_fig("3.breast_cancer_scatter_X_train", "ml")    
     plt.show()
 
 
@@ -135,5 +135,5 @@ sns.pairplot(cancerDf,
              diag_kind='kde',
              hue='targets', 
              palette='bright') # pastel, bright, deep, muted, colorblind, dark
-images.image.save_fig("3.breast_cancer_Scatter_by_seaborn")     
+images.image.save_fig("3.breast_cancer_Scatter_by_seaborn", "ml")     
 plt.show()

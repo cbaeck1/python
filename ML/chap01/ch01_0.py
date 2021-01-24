@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 1. 붓꽃iris 데이터셋
@@ -37,7 +38,7 @@ sns.pairplot(iris_seaborn,
              diag_kind='kde',
              hue='species', 
              palette='bright') # pastel, bright, deep, muted, colorblind, dark
-images.image.save_fig("1.Iris_Scatter_by_seaborn1")     
+images.image.save_fig("1.Iris_Scatter_by_seaborn1", "ml")     
 plt.show()
 
 #  다른방법으로 pairplot
@@ -59,7 +60,7 @@ sns.pairplot(iris,
              diag_kind='kde',
              hue='species', 
              palette='bright') # pastel, bright, deep, muted, colorblind, dark
-images.image.save_fig("1.Iris_Scatter_by_seaborn2")     
+images.image.save_fig("1.Iris_Scatter_by_seaborn2", "ml")       
 plt.show()
 
 from sklearn.model_selection import train_test_split
@@ -80,19 +81,19 @@ print("iris_dataframe 5개: {}".format(iris_dataframe.head()))
 
 iris_dataframe.plot.hist(alpha=0.5)
 plt.title("Iris Histogram Plot")
-images.image.save_fig("1.Iris_Histogram")
+images.image.save_fig("1.Iris_Histogram", "ml")  
 plt.show()
 
 # 데이터프레임을 사용해 y_train에 따라 색으로 구분된 산점도 행렬을 만듭니다.
 pd.plotting.scatter_matrix(iris_dataframe, c=y_train, figsize=(15, 15), marker='o',
   hist_kwds={'bins': 20}, s=20, alpha=.8, cmap=mglearn.cm3)
 plt.title("Iris Scatter Plot")
-images.image.save_fig("1.Iris_Scatter")  
+images.image.save_fig("1.Iris_Scatter", "ml")   
 plt.show()
 
 # seaborn 을 이용한 산점도 행렬
 sns.pairplot(iris_dataframe, diag_kind='hist')
-images.image.save_fig("1.Iris_Scatter_by_seaborn3")               
+images.image.save_fig("1.Iris_Scatter_by_seaborn3", "ml")                
 plt.show()
 
 

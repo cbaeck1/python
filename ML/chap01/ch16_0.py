@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))))
 import images.image
 
 # 16. 고유얼굴(eigenface) people
@@ -37,7 +38,7 @@ for target, image_shape, ax in zip(people.target,people.images, axes.ravel()):
     ax.imshow(image_shape) 
     ax.set_title(people.target_names[target])
 plt.title("people image")
-images.image.save_fig("16.people_image")
+images.image.save_fig("16.people_image", "ml")
 plt.show()
 
 # 데이터의 편중을 없애기위해 사람마다 50개의 이미지만 선택
