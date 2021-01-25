@@ -11,4 +11,4 @@ def oracle_db_conn():
     return conn
 
 if __name__ == '__main__':
-    print("asdfasdfasdfasdf")
+    print(oracle_db_conn())

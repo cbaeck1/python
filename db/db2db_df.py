@@ -20,7 +20,7 @@ def retrieve_name(var):
 # callers_local_vars = inspect.currentframe().f_back.f_back.f_locals.items()
 # return [var_name for var_name,var_val in callers_local_vars if var_val is var]    
 
-def custom_logging(msg, printout=True, dbwrite=False, msg_code=""):
+def clogging(msg, printout=True, dbwrite=False, msg_code=""):
     msgVar = retrieve_name(msg)
     logging.info("{} : {}".format(msgVar, msg))
     if printout:
@@ -37,7 +37,7 @@ def TBPBTV003_ins(wk_exec_sts_cd, wk_exec_cnts):
             wk_exec_sts_cd=wk_exec_sts_cd,
             wk_exec_cnts=wk_exec_cnts,
             crt_pgm_id=base_file_nm[0])
-    custom_logging(TBPBTV003_ins_01)            
+    clogging(TBPBTV003_ins_01)            
     cur.execute(TBPBTV003_ins_01)
     conn.commit()
 
@@ -48,13 +48,13 @@ def main():
                                                             ask_id=ASK_ID,
                                                             rshp_id=RSHP_ID,
                                                             prvdr_cd=PRVDR_CD)
-    custom_logging(TBIPKV_SEL_01)
+    clogging(TBIPKV_SEL_01)
     cur2.execute(TBIPKV_SEL_01)
     TBIPKV_SEL_01_fetchall = cur2.fetchall()
-    custom_logging(len(TBIPKV_SEL_01_fetchall))
+    clogging(len(TBIPKV_SEL_01_fetchall))
 
     TBIPKV_data = pd.DataFrame(data = TBIPKV_SEL_01_fetchall, columns = ['HASH_DID'])
-    custom_logging(TBIPKV_data) 
+    clogging(TBIPKV_data) 
     # 컬럼순서 재정의
     TBIPKV_data = TBIPKV_data[['HASH_DID']]
     # sql에 한번에 넣기 위해 투플로 저장
@@ -65,7 +65,7 @@ def main():
                                                             ask_id_num=ASK_ID[5:],
                                                             rshp_id=RSHP_ID,
                                                             prvdr_cd=PRVDR_CD)
-    custom_logging(TBPPKV_DEL_01)            
+    clogging(TBPPKV_DEL_01)            
     cur.execute(TBPPKV_DEL_01)
 
     TBPPKV_INS_01_src = SQL_DIR + '/' + 'TBPPKV_INS_01.sql'
@@ -87,7 +87,6 @@ if __name__ == "__main__":
     # 비식별기준이 없으면 파일 생성을 하지 않는다. 비식별만 재작업하기 위하여
     PASS_NOT_EXISTS_TBPINV112 = False  # default = True
     PASS_ALTER_ID = True # default = True
-
     STDOUT_TRUE = True # default
     STDOUT_FALSE = False
     TBPBTV003_TRUE = True
@@ -95,8 +94,9 @@ if __name__ == "__main__":
 
     base_file_nm = os.path.basename(__file__).split('.')
     logging.basicConfig(
-        filename=LOG_DIR + '/' + base_file_nm[0]+ '_' + datetime.now().strftime('%Y%m%d')   + '.log', \
-        level=eval(LOG_LEVEL), filemode='a+', \
+        filename=LOG_DIR + '/' + base_file_nm[0]+ '_' + datetime.now().strftime('%Y%m%d')   + '.log', 
+        level=eval(LOG_LEVEL), 
+        filemode='a+', 
         format='{} %(levelname)s : line = %(lineno)d , message = %(message)s'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
     # hmbpuser
