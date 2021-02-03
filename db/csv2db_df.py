@@ -1,5 +1,4 @@
 from base.base_bobig import *
-from base.tibero_dbconn import *
 from base.tibero_dbconn2 import *
 from base.query_sep import *
 import os, sys
@@ -43,46 +42,49 @@ def TBPBTV003_ins(wk_exec_sts_cd, wk_exec_cnts):
 
 #################################################################
 def main():
-    TBIPKV_SEL_01_src = SQL_DIR + '/' + 'TBIPKV_SEL_01.sql'
-    TBIPKV_SEL_01 = query_seperator(TBIPKV_SEL_01_src).format(year=ASK_ID[0:4],
-                                                            ask_id=ASK_ID,
-                                                            rshp_id=RSHP_ID,
-                                                            prvdr_cd=PRVDR_CD)
-    custom_logging(TBIPKV_SEL_01)
-    cur2.execute(TBIPKV_SEL_01)
-    TBIPKV_SEL_01_fetchall = cur2.fetchall()
-    custom_logging(len(TBIPKV_SEL_01_fetchall))
-
-    TBIPKV_data = pd.DataFrame(data = TBIPKV_SEL_01_fetchall, columns = ['HASH_DID'])
+    # File Read
+    TBIPKV_data = pd.read_csv(SRC_PTH_NM + '/' + FILE_NM,
+                            #names=['ASK_ID','RSHP_ID','PRVDR_CD','HASH_DID'],
+                            header=None,
+                            encoding='utf-8',
+                            dtype = str,
+                            na_filter=None,
+                            skiprows=1)
+    custom_logging(TBIPKV_data.shape) 
     custom_logging(TBIPKV_data) 
     # 컬럼순서 재정의
-    TBIPKV_data = TBIPKV_data[['HASH_DID']]
+    TBIPKV_data = TBIPKV_data[[3]]
+    custom_logging(TBIPKV_data) 
     # sql에 한번에 넣기 위해 투플로 저장
     TBIPKV_data = TBIPKV_data.fillna('').values.tolist()
 
-    TBPPKV_DEL_01_src = SQL_DIR + '/' + 'TBPPKV_DEL_01.sql'
-    TBPPKV_DEL_01 = query_seperator(TBPPKV_DEL_01_src).format(year=ASK_ID[0:4],
-                                                            ask_id_num=ASK_ID[5:],
-                                                            rshp_id=RSHP_ID,
-                                                            prvdr_cd=PRVDR_CD)
-    custom_logging(TBPPKV_DEL_01)            
-    cur.execute(TBPPKV_DEL_01)
+    if TRUNC_FLAG == 'Y':
+        TBIPKV_DEL_01_src = SQL_DIR + '/' + 'TBIPKV_DEL_01.sql'
+        TBIPKV_DEL_01 = query_seperator(TBIPKV_DEL_01_src).format(year=ASK_ID[0:4],
+                                                                ask_id_num=ASK_ID[5:],
+                                                                rshp_id=RSHP_ID,
+                                                                prvdr_cd=PRVDR_CD)
+        custom_logging(TBIPKV_DEL_01)            
+        cur2.execute(TBIPKV_DEL_01)
 
-    TBPPKV_INS_01_src = SQL_DIR + '/' + 'TBPPKV_INS_01.sql'
-    TBPPKV_INS_01 = query_seperator(TBPPKV_INS_01_src).format(year=ASK_ID[0:4],
+    TBIPKV_INS_01_src = SQL_DIR + '/' + 'TBIPKV_INS_01.sql'
+    TBIPKV_INS_01 = query_seperator(TBIPKV_INS_01_src).format(year=ASK_ID[0:4],
                                                             ask_id=ASK_ID,
                                                             rshp_id=RSHP_ID,
                                                             prvdr_cd=PRVDR_CD,
                                                             crt_pgm_id=base_file_nm[0])
-
-    cur.executemany(TBPPKV_INS_01, TBIPKV_data)
-    conn.commit()
+    custom_logging(TBIPKV_INS_01)
+    cur2.executemany(TBIPKV_INS_01, TBIPKV_data)
+    conn2.commit()
 
 
 if __name__ == "__main__":
-    ASK_ID = '2019-00008' # sys.argv[1]
-    RSHP_ID = 'A0001' # sys.argv[2]
-    PRVDR_CD = 'K0004' # sys.argv[3]
+    ASK_ID = sys.argv[1] # '2019-A0044' #
+    RSHP_ID = sys.argv[2] # 'B0001' # 
+    PRVDR_CD = sys.argv[3] # 'K0004' # 
+    SRC_PTH_NM = sys.argv[4] # 'D:/work/2019/out' #
+    FILE_NM =  sys.argv[5] # 'IF_DL_504_2019A0044_B0001_HN07_ALL_1_1_201119.txt' # 
+    TRUNC_FLAG = sys.argv[6] # 'Y'  
 
     # 비식별기준이 없으면 파일 생성을 하지 않는다. 비식별만 재작업하기 위하여
     PASS_NOT_EXISTS_TBPINV112 = False  # default = True
@@ -99,17 +101,12 @@ if __name__ == "__main__":
         level=eval(LOG_LEVEL), filemode='a+', \
         format='{} %(levelname)s : line = %(lineno)d , message = %(message)s'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
-    # hmbpuser
-    conn = tibero_db_conn()
-    cur = conn.cursor()
     # hmbpdata
     conn2 = tibero_db_conn2()
     cur2 = conn2.cursor()
 
     main()
 
-    cur.close()
-    conn.close()
     cur2.close()
     conn2.close()
 

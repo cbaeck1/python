@@ -10,7 +10,7 @@ driver = webdriver.Chrome(options=chrome_options);
 driver.implicitly_wait(3)
 
 #driver = webdriver.Chrome()
-driver.get('http://www.naver.com/')
+driver.get('https://www.naver.com/')
 time.sleep(1)
 
 # 로그인 버튼을 찾고 클릭합니다
