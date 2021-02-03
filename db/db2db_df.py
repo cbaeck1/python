@@ -1,12 +1,13 @@
-from base.base_bobig import *
-from base.tibero_dbconn import *
-from base.tibero_dbconn2 import *
-from base.query_sep import *
 import os, sys
 import logging
 from datetime import datetime,timedelta
 import inspect
 import pandas as pd
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from base.base_bobig import *
+from base.tibero_dbconn import *
+from base.tibero_dbconn2 import *
+from base.query_sep import *
 
 def retrieve_name(var):
     #callers_local_vars = inspect.currentframe().f_back.f_locals.items()
@@ -28,7 +29,7 @@ def custom_logging(msg, printout=True, dbwrite=False, msg_code=""):
     if msg_code != "" and dbwrite:
        TBPBTV003_ins(msg_code, msg)
 
-# 6. 배치상세내역 입력 함수
+# 
 def TBPBTV003_ins(wk_exec_sts_cd, wk_exec_cnts):
     global BT_EXEC_SEQ,BT_SEQ
     TBPBTV003_ins_01_src = SQL_DIR + '/' + 'TBPBTV003_ins_01.sql'
@@ -55,9 +56,9 @@ def main():
 
     TBIPKV_data = pd.DataFrame(data = TBIPKV_SEL_01_fetchall, columns = ['HASH_DID'])
     custom_logging(TBIPKV_data) 
-    # 컬럼순서 재정의
+    #  
     TBIPKV_data = TBIPKV_data[['HASH_DID']]
-    # sql에 한번에 넣기 위해 투플로 저장
+    #  
     TBIPKV_data = TBIPKV_data.fillna('').values.tolist()
 
     TBPPKV_DEL_01_src = SQL_DIR + '/' + 'TBPPKV_DEL_01.sql'
@@ -80,11 +81,11 @@ def main():
 
 
 if __name__ == "__main__":
-    ASK_ID = '2019-00008' # sys.argv[1]
-    RSHP_ID = 'A0001' # sys.argv[2]
-    PRVDR_CD = 'K0004' # sys.argv[3]
+    ASK_ID = sys.argv[1] # '2019-00078'
+    RSHP_ID =  sys.argv[2] # 'A0001'
+    PRVDR_CD = sys.argv[3] # 'K0003'
 
-    # 비식별기준이 없으면 파일 생성을 하지 않는다. 비식별만 재작업하기 위하여
+    #  
     PASS_NOT_EXISTS_TBPINV112 = False  # default = True
     PASS_ALTER_ID = True # default = True
 
