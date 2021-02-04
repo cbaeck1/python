@@ -1,0 +1,42 @@
+'''
+01. 웹 크롤링 - bs4, requests
+A. BeautifulSoup4, requests 설치
+B. 네이버 날씨 미세먼지 가져오기
+C. 네이버 웹툰 제목 가져오기
+D. 네이버 웹툰 썸네일 가져오기
+
+02. 웹 자동화 - selenium
+A. Selenium 설치
+    http://chromedriver.chromium.org/
+B. 유튜브 키워드 검색
+C. 1 to 50 봇
+D. 색맹테스트 봇
+E. 트위치 클립 다운로드
+F. Driver를 숨기려면?
+
+03. 메일 - smtplib, mime
+A. 구글 메일 보내기
+B. 구글 메일 파일 첨부
+C. 네이버 메일 보내기
+
+04. REST API - requests
+A. requests 설치
+B. 네이버 개발자 등록
+C. 네이버 얼굴 이미지 인식 API(CFR API)
+D. 네이버 파파고 API
+E. 네이버 파파고 API - requests 모듈로 변경
+
+05. 구글 드라이브 - gdrive
+A. gdrive 설치
+B. gdrive 인증 및 초기화
+C. 구글 드라이브 업로드
+
+06. 파이어베이스 - firebase
+A. firebase-admin 설치
+B. 프로젝트 생성 및 키 발급
+C. 인증 및 데이터베이스 연결
+D. 값 저장하기
+E. 값 조회하기
+
+
+'''
