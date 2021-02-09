@@ -1,0 +1,48 @@
+파이썬 마님 엔진으로 수학 동영상 만들기
+
+
+01장 '마님(manim)' 소개
+02장 개발환경 구축하기
+02-1 기본 환경 구성 및 필수 라이브러리 설치
+기본 환경
+    운영체제: Windows 7 혹은 Windows 10
+    파이썬 버전: Python 3
+필수 라이브러리 설치
+1) FFmpeg: 동영상 파일을 생성해주는 라이브러리 
+    https://www.wikihow.com/Install-FFmpeg-on-Windows
+2) pycairo : 그래픽 처리 라이브러리
+    https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycairo
+    pip3 install pycairo-1.18.2-cp37-cp37m-win_amd64.whl
+3) MikTex : 수식 문자 입력을 위한 LaText 프로그램
+    https://miktex.org/download
+4) Sox : 사운드 변환 라이브러리
+    https://sourceforge.net/projects/sox/files/sox/
+
+02-2 마님 다운로드 및 설치
+    https://github.com/3b1b/manim
+    cd manim
+    python manim.py example_scenes.py OpeningManimExample
+    python manim.py example_scenes.py SquareToCircle 
+02-3 새로운 폴더에서 마님 사용하기
+동영상을 제작하다보면 마님 라이브러리 코드를 수정해야하는 경우가 있기에 원본 라이브러리는 남겨두고, 다른 폴더에서 라이브러리를 수정
+manimlib, manim.py, example_scenes.py 
+
+03장 마님 시작하기
+마님에 의해 만들어지는 동영상을 만들려면 Scene 를 상속받는 임의의 클래스를 만들고 
+construct 라는 메서드를 만들어서 그 메서드에 실행될 코드를 작성하면 됩니다.
+construct 가 동영상 실행의 main 함수 같은 역할을 담당하는 것입니다. 
+즉, 마님이 실행될 때 이 construct 메서드가 자동으로 호출되게 됩니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
