@@ -72,6 +72,8 @@ f.close()
 with open("foo.txt", "w") as f:
     f.write("Life is too short, you need python")
 
+with open("foo.txt", "r") as f:
+    print(f.readline(), end="")
 
 # [sys 모듈로 매개변수 주기]
 # 명령 프롬프트 명령어 [인수1 인수2 ...]

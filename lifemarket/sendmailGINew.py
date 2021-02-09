@@ -82,7 +82,8 @@ SMTP_USER =  'cbaeck1@gmail.com'# "보내는 사람 메일 주소"
 SMTP_PASSWORD = 'oiudntprqfmafdta' # "비밀번호"
 
 from openpyxl import load_workbook
-wb = load_workbook('basic/abc.xlsx')
+# wb = load_workbook('basic/abc.xlsx')
+wb = load_workbook('lifemarket/GI123.xlsx')
 ws = wb.active
 template = Template("""
 <html>

@@ -33,3 +33,6 @@ __pycache__/
 **/.pytest_cache/
 *.exe
 *.jpg
+*.mp3
+*.xlsx
+
