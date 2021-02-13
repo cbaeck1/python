@@ -31,9 +31,22 @@ __pycache__/
 **/pytest/
 **/__pycache__/
 **/.pytest_cache/
-**/manim/manimlib/
 *.exe
 *.jpg
+*.png
 *.mp3
+*.mp4
+*.pdf
+*.xls
 *.xlsx
+**/*.exe
+**/*.jpg
+**/*.png
+**/*.mp3
+**/*.mp4
+**/*.pdf
+**/*.xls
+**/*.xlsx
+
+
 

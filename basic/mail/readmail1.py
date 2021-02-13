@@ -13,7 +13,7 @@ def find_encoding_info(txt):
  
 # Email 설정정보 불러오기
 config = configparser.ConfigParser()
-config.read('basic/config.ini')
+config.read('basic/mail/config.ini')
  
 # gmail imap 세션 생성
 session = imaplib.IMAP4_SSL('imap.gmail.com', 993)

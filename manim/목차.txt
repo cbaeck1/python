@@ -1,5 +1,5 @@
 파이썬 마님 엔진으로 수학 동영상 만들기
-
+https://pypi.org/project/manim/
 
 01장 '마님(manim)' 소개
 02장 개발환경 구축하기
@@ -8,21 +8,22 @@
     운영체제: Windows 7 혹은 Windows 10
     파이썬 버전: Python 3
 필수 라이브러리 설치
-1) FFmpeg: 동영상 파일을 생성해주는 라이브러리 
-    https://www.wikihow.com/Install-FFmpeg-on-Windows
-2) pycairo : 그래픽 처리 라이브러리
-    https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycairo
-    pip3 install pycairo-1.18.2-cp37-cp37m-win_amd64.whl
-3) MikTex : 수식 문자 입력을 위한 LaText 프로그램
-    https://miktex.org/download
-4) Sox : 사운드 변환 라이브러리
-    https://sourceforge.net/projects/sox/files/sox/
+    1) FFmpeg: 동영상 파일을 생성해주는 라이브러리 
+        https://www.wikihow.com/Install-FFmpeg-on-Windows
+    2) pycairo : 그래픽 처리 라이브러리
+        https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycairo
+        pip3 install pycairo-1.18.2-cp37-cp37m-win_amd64.whl
+    3) MikTex : 수식 문자 입력을 위한 LaText 프로그램
+        https://miktex.org/download
+    4) Sox : 사운드 변환 라이브러리
+        https://sourceforge.net/projects/sox/files/sox/
 
 02-2 마님 다운로드 및 설치
     https://github.com/3b1b/manim
     cd manim
     python manim.py example_scenes.py OpeningManimExample
     python manim.py example_scenes.py SquareToCircle 
+    
 02-3 새로운 폴더에서 마님 사용하기
 동영상을 제작하다보면 마님 라이브러리 코드를 수정해야하는 경우가 있기에 원본 라이브러리는 남겨두고, 다른 폴더에서 라이브러리를 수정
 manimlib, manim.py, example_scenes.py 
@@ -33,8 +34,12 @@ construct 라는 메서드를 만들어서 그 메서드에 실행될 코드를 
 construct 가 동영상 실행의 main 함수 같은 역할을 담당하는 것입니다. 
 즉, 마님이 실행될 때 이 construct 메서드가 자동으로 호출되게 됩니다.
 
-
-
+python -m manim src\hello.py Hello_World
+    -m 옵션은, 파이썬에서 어떤 모듈을 직접 실행시키고자 할 때 사용
+    hello.py파일에서 실행할 클래스 Hello_World
+    -pl은 Low quality의 동영상을 만들고, 동영상이 다 만들어지면 자동으로 보여주라는 옵션입니다. 
+    -pm은 Midium quality의 동영상을 만들고, 
+    -ps는 제일 마지막 장면을 정지영상으로해서 이미지 파일을 만듭니다.
 
 
 
