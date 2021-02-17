@@ -1,0 +1,150 @@
+1. 다운로드 및 설치
+2. MoviePy 시작하기
+3. 갤러리
+4. 예제 스크립트
+5. Moviepy Docker
+6. 그래서 OpenCV 2.4.6을 설치 하시겠습니까?
+7. FAQ 및 문제 해결
+8. 고급 도구
+9. 참조 설명서
+
+
+----------------------------------------------------------------------------------------------------------
+1. 다운로드 및 설치
+
+pip install moviepy
+pip install ez_setup
+
+MoviePy 는 MoviePy 설치 중에 자동으로 설치되는 Python 모듈 Numpy, ImageIO, Decorator 및 tqdm 에 의존
+MoviePy 는 비디오 읽기 및 쓰기를 위해 소프트웨어 FFMPEG에 의존
+FFMPEG 는 ImageIO 에 의해 자동으로 다운로드 / 설치
+특정 버전의 FFMPEG 를 사용하려면 FFMPEG_BINARY 환경 변수를 설정
+    IMAGEMAGICK_BINARY = "C:\\Program Files\\ImageMagick_VERSION\\magick.exe"
+                          C:\\Program Files\\ImageMagick_VERSION\\convert.exe
+
+고급 이미지 처리를 위해서는  Scipy, PIL, Pillow, OpenCV 를 설치
+    Python Imaging Library (PIL) 또는 더 나은 Pillow .
+    Scipy (추적, 분할 등)이며 컴퓨터에 PIL 및 OpenCV 가 설치되어 있지 않은 경우 비디오 클립의 크기를 조정하는 데 사용 
+    Scikit Image 는 일부 고급 이미지 조작에 필요 
+    OpenCV 2.4.6 이상 (패키지 제공 cv2) 또는 일부 고급 이미지 조작을 위해  
+
+2. MoviePy 시작하기
+1) 빠른 프레젠테이션
+2) 클립 믹싱
+3) 클립 변형 및 효과
+4) MoviePy 를 효율적으로 사용하는 방법
+5) matplotlib 작업
+6) MoviePy 의 오디오
+7) 비디오 클립 만들기 및 내보내기
+
+1) 빠른 프레젠테이션
+(1) 장점
+    웹 서버 (Django, Flask 등)에서 비디오 또는 GIF 생성을 자동화
+    제목 삽입, 개체 추적, 장면 잘라 내기, 엔딩 크레딧 만들기, 자막 등과 같은 지루한 작업을 자동화
+    기존 비디오 편집기가 할 수없는 작업을 수행하기 위해 고유 한 비디오 효과를 코딩
+    다른 파이썬 라이브러리 (Matplotlib, Mayavi, Gizeh, scikit-images…)에서 생성 된 이미지에서 애니메이션을 생성
+
+(2) MoviePy가 최상의 솔루션이 아닌 작업
+    프레임 별 비디오 분석 (얼굴 감지 또는 기타 멋진 기능 포함)
+    비디오 파일 만 변환하거나 일련의 이미지 파일을 동영상으로 변환 : 직접 호출 ffmpeg(또는 avconv또는 mencoder…)하는 것이 메모리 효율적
+
+(3) 예제 코드 : movie1.py
+(4) MoviePy의 작동 원리
+1. ffmpeg를 사용하여 비디오 및 오디오 파일을 읽고 내 보냅
+2. (선택적으로) ImageMagick을 사용하여 텍스트를 생성하고 GIF 파일을 작성
+3. 다른 미디어의 처리는 Python의 빠른 숫자 라이브러리 Numpy에 의해 보장됩니다. 
+4. 고급 효과 및 향상은 Python의 수많은 이미지 처리 라이브러리 (PIL, Scikit-image, scipy 등) 중 일부를 사용
+
+(5) 기본 컨셉
+1. 기본 단위는 클립으로 불리며, 크게 AudioClips, VideoClips, AudioFileClip, VideoFileClip 클래스로 구성
+2. 다수의 효과 중 하나를 사용하여 변경 : clip.resize(width="360"), clip.subclip(t1,t2), clip.fx(vfx.black_white)
+3. 사용자 구현 효과를 이용 : clip.fl, clip.fx
+4. 고급도구 (moviepy.video.tools) 제공 : 비디오에서 개체를 추적하고 간단한 모양과 색상 그라디언트 (마스크에 매우 유용)를 자막 및 엔딩 크레딧을 생성
+5. MoviePy를 효율적으로 사용하는 방법 : 스크립트를 미세 조정, 클립을 미리 볼 수있는 여러 가지 방법
+
+2) 클립 믹싱
+비선형 편집이라고도하는 비디오 구성은 새 클립에서 여러 클립을 함께 재생하는 사실입니다. MoviePy로 수행 할 수있는 합성 작업의 좋은 예
+클립 쌓기 및 연결
+클립을 모으는 간단한 두 가지 방법은 클립을 연결 (단일 긴 클립에서 하나씩 재생)하거나 스택 (큰 단일 클립에서 나란히)하는 것입니다.
+(1) 연결 : concatenate_videoclips : movie2.py
+클립의 크기가 같을 필요는 없습니다. 선택적으로 테두리를 채우기 위해 선택한 색상으로 가장 큰 클립을 포함 할 수있을만큼 큰 클립의 중앙에 모두 표시됩니다. 
+옵션을 사용하여 클립간에 전환 클립을 재생 : transition=my_clip
+(2) 스태킹 : clip_array : movie3.py
+(3) CompositeVideoClips : movie4.py
+1. 기본적으로 컴포지션은 첫 번째 클립의 크기를 갖습니다 (일반적으로 배경 )
+2. 최종 컴포지션의 크기를 지정 
+  video = CompositeVideoClip([clip1,clip2,clip3], size=(720,460))
+3. 시작 및 중지 시간
+  clip1 = clip1.set_start(5) # start after 5 seconds
+  video = CompositeVideoClip([clip1, # starts at t=0
+                              clip2.set_start(5), # start at t=5s
+                              clip3.set_start(9)]) # start at t=9s
+4. 1 초의 페이드 인 효과로 clip2 나타나도록
+  video = CompositeVideoClip([clip1, # starts at t=0
+                              clip2.set_start(5).crossfadein(1),
+                              clip3.set_start(9).crossfadein(1.5)])
+5. 클립 위치 지정 : clip2 와 clip3 보다 작은 clip1 의 위치를 설정
+  video = CompositeVideoClip([clip1,
+                              clip2.set_position((45,150)),
+                              clip3.set_position((90,100))])
+  # x=45, y=150 , in pixels
+  # automatically centered, top, bottom, left, right
+  # clip2 is at 40% of the width, 70% of the height of the screen
+  # clip2's position is horizontally centered, and moving down !
+(4) 오디오 클립 합성 : movie5.py
+  concatenate_audioclips
+  CompositeAudioClip
+
+3) 클립 변형 및 효과
+* 주의사항 : 원본 클립을 수정하지 않고 변경 사항이 적용된 새 클립을 생성하는 방식으로
+(1) MoviePy의 시간 표현
+clip.subclip(t_start,t_end)
+  초 ( t_start=230.54), (분, 초) ( t_start=(3,50.54)), (시간, 분, 초) ( t_start=(0,3,50.54)) 또는 문자열 ( t_start='00:03:50.54'))로 표시
+(2) 클립 속성을 변경하는 방법 : movie6.py
+newclip = effect_3(effect_2(effect_1(clip, args3), args2), args1) 보다는
+newclip = (clip.fx(effect_1, args1)
+              .fx(effect_2, args2)
+              .fx(effect_3, args3)) 이 더 가독성이 좋다.
+(3) 사용자 지정 효과를 만드는 방법 : movie7.py
+clip.fl_time 같이 클립의 타임 라인
+clip.fl_image 
+필터 : clip.fl(filter) : 필터는 두 개의 인수를 취하고 그림을 반환하는 함수
+
+4) MoviePy를 효율적으로 사용하는 방법
+(1) moviepy.editor다음 세 가지 방법 중 하나를 사용
+from moviepy.editor import * # imports everything, quick and dirty
+import moviepy.editor as mpy # Clean. Then use mpy.VideoClip, etc.
+from moviepy.editor import VideoFileClip # just import what you need
+(2) 클립을 닫는 ()시기
+일부 유형의 클립 인스턴스 (예 : VideoFileClip또는 AudioFileClip-) 를 만들 때 MoviePy는 하위 프로세스를 만들고 파일을 잠급니다. 
+완료되었을 때 이러한 리소스를 해제하려면 close()메서드를 호출해야합니다.crossfadein
+클립은 컨텍스트 관리자 역할을 합니다. 즉, with문과 함께 사용할 수 있으며 예외가 있더라도 블록 끝에서 자동으로 닫힙니다.
+with AudioFileClip("song.wav") as clip:
+    raise NotImplementedError("I will work out how process this song later")
+# clip.close() is implicitly called, so the lock on song.wav file is immediately released.
+(3) 클립을 미리 보는 다양한 방법
+clip.save_frame : 비디오의 한 프레임 만
+clip.show 및 clip.preview : PyGame이 설치되어 있고 moviepy.editor모듈 을 사용
+    clip.show() 사용하면 파일에 쓸 필요없이 클립의 한 프레임을 미리
+    my_clip.show(10.5) # shows the frame of the clip at t=10.5s
+    my_clip.show(10.5, interactive = True) # 프레임을 대화 형 방식으로 표시, 프레임의 아무 곳이나 클릭하면 픽셀의 위치와 색상이 인쇄
+    
+    my_clip.preview() # preview with default fps=15
+    my_clip.preview(fps=25)
+    my_clip.preview(fps=15, audio=False) # don't generate/play the audio.
+    my_audio_clip.preview(fps=22000)
+
+5) matplotlib 작업
+
+
+
+6) MoviePy의 오디오
+
+
+
+7) 비디오 클립 만들기 및 내보내기
+
+
+
+
+

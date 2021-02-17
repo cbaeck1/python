@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sapient-tractor-305104",
+  "private_key_id": "7ad950091fbc532832e9729c138af8cab1ebc68f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCuG2uotMA8AhBX\nF6OYVCLieASpvt/Wvqi54gF8GH4tcDpVUwws0fZSvCRTa6fRrABVhy2/dJND/JuV\nCdiMvxR5v5x745jKOqxyTPd3Bb0cVDsmKYzXtjo8SW8JeRXeJAlSjtcFIc9XYEej\nCK+ma8qczKT/OmIAkU4PhYX/EkF8tE7FpOmk70dlTg37bP/MZ1Z/SMy8BQYF/5Cd\nlXmfPZq+1MrHmk5tINOe1ZANk3ei1ySthbKEmvyqxxPGkYlz9ly6MRqoEdd9Pp5a\nJMQ4x7EeAYqVoPeSiZrtDssEPrK7t9PfdX2TL/etaZeij/J94KyXmYncvz+pHdhL\nj3B2rilZAgMBAAECggEAGpSyH4wU6zRvdTR1M/zoZIXpRFcRSnJKRTLFgkIlBV/k\ncAFhUvhtMF1r+FZvxRmK5YPhTqEIGLGYuSzLJFXJ1PqVc+6f9YP2ru6kO0YjhI8x\nhpaCW66E/o5BhwM2/Paoe7O2DSEHzDG1TiU11+UOBllR+Wta6fZFIiaC+hm56MVH\n4ObtznfVCJkY11ehZDTZ/En1NX+LqB4+/WJSarMGYwcO8LYoXKGO83Erp5OMbnzp\n1HsnRt4nauCCixuJ7jBTSRPtm2Mj2zahh4nUZjJDeKMNDu4k9iGF6gy+62Xlj5eS\nIgx46nynQ1vmySQrLGM94CAbdBBmhlus0kXb95C5WQKBgQDZshlgF+nV+Tl1lLjL\nFWZcLtc+4dRqM3ZZwQZl3K8iR1+oezjjSY/EvZ0+8s3sMtxaTqbh5uyALJ60HUXF\nRBczddu+a5s6Q60W4/0xs2AmO39QJbeLjpAQCwqVFuj1SlEyBUmBOA+V+o3oe++I\nhpq2x/6qCganFfaboUki3FTY9QKBgQDMven0809supz1AtEzmyW22nScl0ayuvyU\nF+XBLkzkQkDF8GWJNTKHYG4b11WyEjydbn2yaUVFCNXV5BCShNYHFivEAS/tQuui\n9krh7Sa3XlTLo0U210bMTeHzrnMMu+qjFxBKNwkn8ChmXuDh5gSLBMkoQKRXq2QM\n1WUkDaWgVQKBgQDRCTVYkl3VOzUzdJVlXK0ng0rodM0VFUllsfXExf3deo+eJoRf\nq3lDv5dIpLmbPtNcW/3fGXCrOy1BYoJmg5WLsnZJCObLMcT5H/82RDnlPGhpu23d\nsg0fepq0woT7VFtXHsCQNhaxOyAcxzUg8a+KJ8yf1nTA6FQe6OZjdRJ8KQKBgQC1\n8HX85FJKLrLXzz8UeuRSz2Ic3RlILn3RJENZHcnadT2WKAAyo4FZZ8mxF/PhH++Z\nftxYNNAHfsh3IAnSChUfiwYtUVjDoFpBIFh+1/01qa/0ngwdpcQWPYdywi0evcbO\nUup46NtMEE/2WI3CcGLNHt2a1Ya1GWr5NJCCL1ZlWQKBgH6HyVl4ifvfI4CPa3CX\nsZokTuLLivoMQ9HBTIeI89lrpSbdQZo7vW/871g6CcOP5d5gxUQjwNnzyTv2eTpn\nDGxGmHta6To+3OMJGk12MYaggfpnjsQfvMEnxzsCQVSIia3nOqcZcz3lYbeB54jS\nnVBUrQ5o0wkdlVzRhGwkZUF6\n-----END PRIVATE KEY-----\n",
+  "client_email": "demotext2speech@sapient-tractor-305104.iam.gserviceaccount.com",
+  "client_id": "109273071680516531494",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/demotext2speech%40sapient-tractor-305104.iam.gserviceaccount.com"
+}
