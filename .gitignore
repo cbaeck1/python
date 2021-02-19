@@ -32,6 +32,7 @@ __pycache__/
 **/__pycache__/
 **/.pytest_cache/
 *.exe
+*.gif
 *.jpg
 *.png
 *.mp3
@@ -40,7 +41,9 @@ __pycache__/
 *.xls
 *.xlsx
 *.webm
+*.json
 **/*.exe
+**/*.gif
 **/*.jpg
 **/*.png
 **/*.mp3
@@ -49,6 +52,7 @@ __pycache__/
 **/*.xls
 **/*.xlsx
 **/*.webm
+**/*.json
 
 
 
