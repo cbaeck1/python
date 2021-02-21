@@ -24,6 +24,9 @@ cache/
 pytest/
 __pycache__/
 .pytest_cache/
+.venv
+.vscode
+.git
 **/data/
 **/logs/
 **/images/
@@ -31,6 +34,7 @@ __pycache__/
 **/pytest/
 **/__pycache__/
 **/.pytest_cache/
+
 *.exe
 *.gif
 *.jpg

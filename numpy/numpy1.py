@@ -1,6 +1,7 @@
 import numpy as np
 
-# 1. 동일한 데이터타입을 저장
+# np.array객체 
+# 1. 동일한 데이터타입을 저장, 고정길이 (크기를 변경하면 새로 메모리에 할당되고 이전 값은 삭제)
 #    연속적 메모리 공간
 # 2. 벡터화 계산
 #    브로드캐스트
@@ -16,13 +17,40 @@ import numpy as np
                           -> Ox1,Ox3,Ox5,Ox6,Ox100 (주소)
                           -> 1,?,2,?,3,?,4,???...,5 ()
 메모리저장방식
-    1) little-endian
-    2) big-endian
+    1) little-endian : 저장을 뒤에서부터, 메모리 연산, 가산기 성능, 계산 성능, INTEL
+    2) big-endian : 저장을 앞에서부터, 인간인식과 동일, 네트워크전송표준(tcp/ip,xns,sna), 비교 연산, 스택은 빠름, RISC
     3) not-relevant
-메모리크기 : itemsize
-dtype함수 : 필드명과 데이터타입을 정의하고 직접 접근
+sys.byteorder
+
+itemsize : 메모리크기 (byte 단위)
+dtype : 필드명과 데이터타입을 정의하고 직접 접근
+shape : 배열의 형태
+ndim : 차원수 = len(x.shape)
+size : 개수
 '''
-# 백터화 연산 : for문을 사용하지 않고 연산할 수 있음
+
+# 0차원 배열 = 스칼라
+a = np.array(10) # 10
+print(a, a.ndim, a.shape, a.dtype, a.itemsize, a.nbytes, a.size)
+
+# 1차원 배열 =  = [Column]
+A = np.array( [1.0, 2.0] ) # 크기가 (2,) 인 1차원배열
+# shape : numpy에서는 해당 array의 크기를 알 수 있다.
+print(A, A.ndim, A.shape, A.dtype, A.itemsize, A.nbytes, A.size) # [ 1.  2.]
+
+# 2차원 배열 = 행렬 = [Row][Column]
+B = np.array( [[3,0],[0,6]] ) # 크기가 (2, 2) 인 2차원배열
+print(B, B.ndim, B.shape, B.dtype, B.itemsize, B.nbytes, B.size)
+# [[1 2]
+#  [3 4]]
+# 3차원 배열 =  = [Layor][Row][Column]
+X = np.array( [[[1,2],[3,4]], [[5,6],[7,8]]] ) # 크기가 (2,2,2) 인 3차원배열 : [[[ 갯수
+print(X, X.ndim, X.shape, X.dtype, X.itemsize, X.nbytes, X.size)
+
+Z = np.array( [[1,2,3], [1,2,3], [1,2,3]] ) # (3, 3) 2차원배열
+print(Z, Z.ndim, Z.shape, Z.dtype, Z.itemsize, Z.nbytes, Z.size)
+
+# 2. 백터화 연산 : for문을 사용하지 않고 연산할 수 있음
 print('===============백터화 연산')
 # F = c * 8/5 + 32
 c = np.array(np.arange(-100,101,1))
@@ -30,23 +58,7 @@ print(c)
 f = c * 8/5 + 32
 print(f)
 
-# 0차원 배열 = 스칼라
-a = np.array(10) # 10
-# 1차원 배열 =  = [Column]
-A = np.array( [1.0, 2.0] ) # 크기가 (2,) 인 1차원배열
-# shape : numpy에서는 해당 array의 크기를 알 수 있다.
-# 
 
-print(A, A.ndim, A.shape, A.dtype, A.itemsize, A.nbytes) # [ 1.  2.]
-# 2차원 배열 = 행렬 = [Row][Column]
-A = np.array( [[1,2],[3,4]] ) # 크기가 (2, 2) 인 2차원배열
-B = np.array( [[3,0],[0,6]] )
-print(A, A.ndim, A.shape, A.dtype, A.itemsize, A.nbytes)
-# [[1 2]
-#  [3 4]]
-# 3차원 배열 =  = [Layor][Row][Column]
-X = np.array( [[[1,2],[3,4]], [[5,6],[7,8]]] ) # 크기가 (2, 2,2) 인 3차원배열
-print(X, X.ndim, X.shape, X.dtype, X.itemsize, X.nbytes)
 
 # 연산 : 기본적으로 numpy에서 연산을 할때는 크기가 서로 동일한 array 끼리 연산이 진행된다.
 #       이때 같은 위치에 있는 요소들 끼리 연산이 진행
@@ -104,7 +116,7 @@ print(np.dot(A, B))
 #  [110]]   3*10 + 4*20
 
 
-# 원소값 찾기 : numpy에서 사용되는 인덱싱은 기본적으로 python 인덱싱과 동일
+# 3. 원소값 찾기 : numpy에서 사용되는 인덱싱은 기본적으로 python 인덱싱과 동일
 #   index 접근법 : 배열명[행][열]
 #   slice 접근법 : 배열명[슬라이스,슬라이스]
 #   참조만 할당함으로 원본의 변경이 가능, 원본을 변경하지 않으려면 copy를 사용
@@ -117,7 +129,7 @@ print("A = np.array( [[1,2],[3,4],[5,6]] )")
 # 1. 행 row 가져오기 -> 1차원배열
 print("A[0,:]:", A[0,:]) # [1 2]
 print("A[0]:", A[0]) # [1 2]
-# 2. 원소 1개의값 가져오기
+# 2. 원소 1개의 값 가져오기
 print("A[0][1]:", A[0][1])
 # 3. 열 column 가져오기  -> 1차원배열
 print("A[:,0]:", A[:,0]) # [1 3 5]
@@ -154,10 +166,13 @@ print(B) # [ 1  2 99 99 99 99]
 print(B[B==2]) # [2]
 # 
 
+
+# 초기화
 np.zeros((2,3))
 np.ones((2,3), dtype='int32')
 np.full((2,3), 99, dtype='int32')
 np.full_like(A.shape, 4)
+np.empty((3,3))
 np.identity(3)
 
 # np.random.randn()는 기대값이 0이고, 표준편차가 1인 가우시안 정규 분포를 따르는 난수를 발생시키는 함수
@@ -310,7 +325,7 @@ print(np.outer(A, B), np.outer(A, B).shape)
 print('===============Reorganize')
 before = np.array( [[1,2,3,4], [5,6,7,8]])
 print(before)
-after = before.reshape(4,2)
+after = before.reshape(4,2) # 또는 after = np.reshape(before, (4,2))
 print("before.reshape(4,2)", after.shape)
 print(after)
 after = before.reshape(2,2,2)
@@ -319,12 +334,20 @@ print(after)
 # Exception has occurred: ValueError cannot reshape array of size 8 into shape (3,4)
 # after = before.reshape(3,4)
 
+np.arange(1,2, 0.1)
+np.arange(10)   # start, step 생략가능. 정수로 생성
+np.arange(10.)  # start, step 생략가능. 실수로 생성
 
+np.linspace(0.,20.,11) # array([  0.,   2.,   4., ...,  16.,  18.,  20.])
+np.eye(3) 
+'''
+array([[ 1.,  0.,  0.],
+       [ 0.,  1.,  0.],
+       [ 0.,  0.,  1.]])
+'''
 
-
-
-
-
+# astype() 메쏘드를 사용하면 배열에서 dtype을 바꿀 수 있다.
+a.astype(int)  # a.astype('int34') 와 동일
 
 
 

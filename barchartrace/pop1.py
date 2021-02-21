@@ -72,7 +72,7 @@ def draw_barchart(year):
     ax.set_axisbelow(True)
     ax.text(0, 1.12, 'The most populous cities in the world from 1500 to 2018',
             transform=ax.transAxes, size=24, weight=600, ha='left')
-    ax.text(1, 0, 'by @cbaeck; credit @cbaeck', transform=ax.transAxes, ha='right',
+    ax.text(1, 0, 'by @it-is-well; credit @it-is-well', transform=ax.transAxes, ha='right',
             color='#777777', bbox=dict(facecolor='white', alpha=0.8, edgecolor='white'))
     plt.box(False)
     
@@ -83,7 +83,7 @@ import matplotlib.animation as animation
 
 fig, ax = plt.subplots(figsize=(15, 8))
 animator = animation.FuncAnimation(fig, draw_barchart, frames=range(1500, 2019))
-animator.save('pop1.gif', writer='imagemagick', fps=30, dpi=100)
+animator.save('pop1.gif', writer='imagemagick', fps=30, dpi=300)
 
 # HTML(animator.to_jshtml()) 
 # or use animator.to_html5_video() or animator.save()

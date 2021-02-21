@@ -28,15 +28,24 @@ def load_dataset(name='covid19', index=None):
     index_dict = {'covid19_tutorial': 'date',
                 'covid19': 'date',
                 'urban_pop': 'year',
-                'COVID-19': None,
                 'baseball': None}
+    parse_dates = None
     if index is None:
         index_col = index_dict[name]
+    elif index == 'date':
+        index_col = None
+        parse_dates = [index]
     else:
         index_col = index
-    
-    parse_dates = [index_col] if index_col else None
-    return pd.read_csv(url, index_col=index_col, parse_dates=parse_dates)
+
+    if parse_dates is None:
+        parse_dates = [index_col] if index_col else None
+
+    try:
+        df = pd.read_csv(url, index_col=index_col, parse_dates=parse_dates)
+    except:
+        df = pd.read_csv(url, index_col=index_col, parse_dates=parse_dates, encoding='euc-kr')
+    return df
 
 def prepare_wide_data(df, orientation='h', sort='desc', n_bars=None, interpolate_period=False, 
                       steps_per_period=10, compute_ranks=True):
