@@ -26,7 +26,7 @@ itemsize : 메모리크기 (byte 단위)
 dtype : 필드명과 데이터타입을 정의하고 직접 접근
 shape : 배열의 형태
 ndim : 차원수 = len(x.shape)
-size : 개수
+size : 원소의 개수
 '''
 
 # 0차원 배열 = 스칼라
@@ -34,21 +34,28 @@ a = np.array(10) # 10
 print(a, a.ndim, a.shape, a.dtype, a.itemsize, a.nbytes, a.size)
 
 # 1차원 배열 =  = [Column]
-A = np.array( [1.0, 2.0] ) # 크기가 (2,) 인 1차원배열
+A = np.array( [1.0, 2.0] ) # 크기가 (2,) 인 1차원배열 : [ 갯수
 # shape : numpy에서는 해당 array의 크기를 알 수 있다.
 print(A, A.ndim, A.shape, A.dtype, A.itemsize, A.nbytes, A.size) # [ 1.  2.]
 
 # 2차원 배열 = 행렬 = [Row][Column]
-B = np.array( [[3,0],[0,6]] ) # 크기가 (2, 2) 인 2차원배열
+B = np.array( [[3,0],[0,6]] ) # 크기가 (2, 2) 인 2차원배열 : [[ 갯수
 print(B, B.ndim, B.shape, B.dtype, B.itemsize, B.nbytes, B.size)
 # [[1 2]
 #  [3 4]]
 # 3차원 배열 =  = [Layor][Row][Column]
-X = np.array( [[[1,2],[3,4]], [[5,6],[7,8]]] ) # 크기가 (2,2,2) 인 3차원배열 : [[[ 갯수
+X = np.array( [[[1,2],[3,4]], [[5,6],[7,8]]] ) # 크기가 (2, 2,2) 인 3차원배열 : [[[ 갯수
 print(X, X.ndim, X.shape, X.dtype, X.itemsize, X.nbytes, X.size)
 
-Z = np.array( [[1,2,3], [1,2,3], [1,2,3]] ) # (3, 3) 2차원배열
+Y = np.array( [[[1,2],[3,4]], [[5,6],[7,8]], [[1,2],[3,4]]] ) # 크기가 (3, 2,2) 인 3차원배열 : [[[ 갯수
+print(Y, Y.ndim, Y.shape, Y.dtype, Y.itemsize, Y.nbytes, Y.size)
+
+Z = np.array( [[1,2,3], [1,2,3], [1,2,3]] ) # 크기가 (3, 3) 2차원배열 : [[ 갯수
 print(Z, Z.ndim, Z.shape, Z.dtype, Z.itemsize, Z.nbytes, Z.size)
+
+# 크기가 (3, 2,2,2) 인 4차원배열 : [[[[ 갯수
+X4 = np.array( [ [[[1,2],[3,4]], [[5,6],[7,8]]], [[[11,12],[13,14]], [[15,16],[17,18]]], [[[21,22],[23,24]], [[25,26],[27,28]]] ] ) 
+print(X4, X4.ndim, X4.shape, X4.dtype, X4.itemsize, X4.nbytes, X4.size)
 
 # 2. 백터화 연산 : for문을 사용하지 않고 연산할 수 있음
 print('===============백터화 연산')
@@ -57,7 +64,6 @@ c = np.array(np.arange(-100,101,1))
 print(c)
 f = c * 8/5 + 32
 print(f)
-
 
 
 # 연산 : 기본적으로 numpy에서 연산을 할때는 크기가 서로 동일한 array 끼리 연산이 진행된다.
@@ -118,7 +124,7 @@ print(np.dot(A, B))
 
 # 3. 원소값 찾기 : numpy에서 사용되는 인덱싱은 기본적으로 python 인덱싱과 동일
 #   index 접근법 : 배열명[행][열]
-#   slice 접근법 : 배열명[슬라이스,슬라이스]
+#   slice 접근법 : 배열명[시작번호:끝번호] : 시작번호 포함, 끝번호 미포함
 #   참조만 할당함으로 원본의 변경이 가능, 원본을 변경하지 않으려면 copy를 사용
 #   __getitem__ , __setitem__
 #   Boolean 접근법

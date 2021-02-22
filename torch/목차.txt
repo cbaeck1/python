@@ -72,12 +72,85 @@ ONNX(Open Neural Network Exchange)의 포맷으로 모델을 익스포트(export
 2. 넘파이로 텐서 만들기(벡터와 행렬 만들기)
 1) 1D with Numpy
 t = np.array([0., 1., 2., 3., 4., 5., 6.])
-print(A, A.ndim, A.shape, A.dtype, A.itemsize, A.nbytes, A.size)
-
-
+print(t, t.ndim, t.shape, t.dtype, t.itemsize, t.nbytes, t.size)
+print('t[0] t[1] t[-1] = ', t[0], t[1], t[-1]) # 인덱스를 통한 원소 접근
+print('t[2:5] t[4:-1]  = ', t[2:5], t[4:-1]) # [시작 번호 : 끝 번호]로 범위 지정을 통해 가져온다.
+print('t[:2] t[3:]     = ', t[:2], t[3:]) # 시작 번호를 생략한 경우와 끝 번호를 생략한 경우
+2) 2D with Numpyㅍ
+t2 = np.array([[1., 2., 3.], [4., 5., 6.], [7., 8., 9.], [10., 11., 12.]])
+print(t2, t2.ndim, t2.shape, t2.dtype, t2.itemsize, t2.nbytes, t2.size)
 
 3. 파이토치 텐서 선언하기(PyTorch Tensor Allocation)
+import torch
+1) 1D with PyTorch
+t = torch.FloatTensor([0., 1., 2., 3., 4., 5., 6.])
+print(t, t.dim(), t.shape, t.dtype, t.size())
+print(t[0], t[1], t[-1])  # 인덱스로 접근
+print(t[2:5], t[4:-1])    # 슬라이싱
+print(t[:2], t[3:])       # 슬라이싱
+2) 2D with PyTorch
+t2 = torch.FloatTensor([[1., 2., 3.],
+                       [4., 5., 6.],
+                       [7., 8., 9.],
+                       [10., 11., 12.]
+                      ])
+print(t2, t2.dim(), t2.shape, t2.dtype, t2.size())
+print(t[:, :-1]) # 첫번째 차원을 전체 선택한 상황에서 두번째 차원에서는 맨 마지막에서 첫번째를 제외하고 다 가져온다.
+3) 브로드캐스팅(Broadcasting)
+m1 = torch.FloatTensor([[3, 3]])
+m2 = torch.FloatTensor([[2, 2]])
+print(m1 + m2)
+# Vector + scalar
+m1 = torch.FloatTensor([[1, 2]])
+m2 = torch.FloatTensor([3]) # [3] -> [3, 3] 브로드캐스팅
+print(m1 + m2)
+# 2 x 1 Vector + 1 x 2 Vector
+m1 = torch.FloatTensor([[1, 2]])
+m2 = torch.FloatTensor([[3], [4]])
+print(m1 + m2)
 
+# 브로드캐스팅 과정에서 실제로 두 텐서는 아래와 같이 브로드캐스팅
+[1, 2]
+==> [[1, 2],
+     [1, 2]]
+[[3], [4]]
+==> [[3, 3],
+     [4, 4]]
+
+4) 자주 사용되는 기능들
+(1) 행렬곱셈과 곱셈의 차이(Matrix Multiplication Vs. Multiplication)
+- 행렬곱셈(.matmul)
+m1 = torch.FloatTensor([[1, 2], [3, 4]])
+m2 = torch.FloatTensor([[1], [2]])
+print('Shape of Matrix 1: ', m1.shape) # 2 x 2
+print('Shape of Matrix 2: ', m2.shape) # 2 x 1
+print(m1.matmul(m2)) # 2 x 1
+- element-wise 곱셈
+print(m1 * m2) # 2 x 2
+print(m1.mul(m2))
+2) 평균(Mean)
+m = torch.FloatTensor([1, 2])
+print(m.mean())
+m2 = torch.FloatTensor([[1, 2], [3, 4]])
+print(m2.mean()) # tensor(2.5000)
+# dim=0이라는 것은 첫번째 차원을 의미, 인자로 dim은 해당 차원을 제거한다는 의미
+# 1과 3의 평균, 2와 4의 평균
+print(m2.mean(dim=0)) # tensor([2., 3.]) 
+print(m2.mean(dim=1)) # 두번째 차원을 제거, 1과 3의 평균, 3과 4의 평균
+print(m2.mean(dim=-1)) # 마지막 차원을 제거한다는 의미
+t2 = torch.FloatTensor([[1, 2, 3], [4, 5, 6]]) # 2 x 3
+print(t2.mean(dim=0)) # 1과 4의 평균, 2와 5의 평균, 3와 6의 평균
+print(t2.mean(dim=1)) # 1,2,3의 평균 4,5,6의 평균
+3) 덧셈(Sum)
+t1 = torch.FloatTensor([[1, 2], [3, 4]])
+print(t1.sum()) # 단순히 원소 전체의 덧셈을 수행
+print(t1.sum(dim=0)) # 행을 제거
+print(t1.sum(dim=1)) # 열을 제거
+print(t1.sum(dim=-1)) # 열을 제거
+3) 최대(Max)와 아그맥스(ArgMax)
+print(t1.max()) # Returns one value: max
+print(t1.max(dim=0)) # Returns two values: max and argmax
+# 3과 4의 인덱스는 [1, 1]입니다.
 
 4. 행렬 곱셈(Maxtrix Multiplication)
 
