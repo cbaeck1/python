@@ -31,13 +31,14 @@ def get_image_label(root_folder, name):
     try:
         #path = "data/flags/Flags/flags/flags/24/{}.png".format(name.title())
         path = os.path.join(root_folder, name)
-        #im = plt.imread(path)
+        #img = plt.imread(path)
         img = Image.open(path)
     except:
         img = Image.open('a.png')
 
-    img.thumbnail((600,600), Image.ANTIALIAS)
-    return img
+    # img.thumbnail((600,600), Image.ANTIALIAS)
+    n_img = img.resize((400, 400), Image.ANTIALIAS)
+    return n_img
 
 def get_image_name(code, col_name):
     '''
@@ -269,7 +270,7 @@ class _BarChartRace(CommonChart):
         #load image as an OffsetImage object
         img_name      = get_image_name(self.code, name)
         img           = get_image_label(self.img_label_folder, img_name)
-        im            = OffsetImage(img,zoom=.08)
+        im            = OffsetImage(img, zoom=.09)
         im.image.axes = ax 
 
         #renderer = self.fig.canvas.renderer
@@ -284,13 +285,13 @@ class _BarChartRace(CommonChart):
                 len_bar = length
                 xybox_val = (15,0) if length < 30 else (-5,0)
                 ab = AnnotationBbox(im,(len_bar,location,),xybox=xybox_val,frameon=False,xycoords='data',
-                                    boxcoords='offset points',pad=0)
+                                    boxcoords='offset points',pad=0.3)
             else:
                 #len_bar = (img_height/2) + 2 if length < img_height else length - (img_height/2) - 2
                 len_bar = length
                 xybox_val = (0,15) if length < 30 else (0,-5)
                 ab = AnnotationBbox(im,(location,len_bar,),xybox=(0.,-10.),frameon=False,xycoords='data',
-                                    boxcoords='offset points',pad=0)
+                                    boxcoords='offset points',pad=0.3)
 
         elif self.tick_image_mode=='fixed':     #images stay fixed at the beginning of the bar
             if self.orientation=='h':

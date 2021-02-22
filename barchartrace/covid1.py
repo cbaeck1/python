@@ -2,8 +2,9 @@ import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import bar_chart_race as bcr
 
-# df = bcr.load_dataset('covid19_tutorial')
-df = bcr.load_dataset('covid19')
+
+df = bcr.load_dataset('covid19_tutorial')
+# df = bcr.load_dataset('covid19')
 print(df.info())
 print(df)
 
@@ -20,7 +21,7 @@ print(df)
 
 bcr.bar_chart_race(
         df=df, 
-        filename='covid19_horiz.mp4', 
+        filename='covid19_deaths.mp4', 
         orientation='h', 
         sort='desc', 
         n_bars=12, 
@@ -63,6 +64,7 @@ bcr.bar_chart_race(
         fig_kwargs={'figsize': (15, 8), 'dpi': 500},
         filter_column_colors=True,
         img_label_folder='country',
+        tick_label_mode='mixed',
         tick_image_mode='trailing'
         ) 
 

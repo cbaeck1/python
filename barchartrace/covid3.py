@@ -41,19 +41,20 @@ bcr.bar_chart_race(
             'pad': 12
         },
         bar_size=.95, 
-        bar_textposition='inside',
+        bar_textposition='outside',
         bar_texttemplate='{x:,.0f}', 
-        bar_label_font={'size':12, 'family':'Malgun Gothic', 'weight': 'bold', 'color':'White'}, 
+        bar_label_font={'size':12, 'family':'Malgun Gothic', 'weight': 'bold', 'color':'Black'}, 
         tick_label_font={'size':20, 'family':'Malgun Gothic', 'weight': 'bold', 'color':'Blue'}, 
         tick_template= '{x:,.0f}', # ticker.StrMethodFormatter('{x:,.0f}')
         shared_fontdict={'size':12, 'family':'Malgun Gothic', 'color':'Black'},  
         scale='linear', 
         fig=None, 
         writer=None, 
-        bar_kwargs={'alpha': .7},
+        bar_kwargs={'alpha': .95},
         fig_kwargs={'figsize': (15, 8), 'dpi': 500},
         filter_column_colors=True,
         img_label_folder='country',
+        tick_label_mode='mixed',
         tick_image_mode='trailing'
         ) 
 
